@@ -1,0 +1,51 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+.article {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #552ab8;
+    border-radius: 5px;
+}
+
+.heart {
+    cursor: pointer;
+    color: gray;
+}
+
+.heart.active {
+    color: red;
+}
+
+/* Styles pour les boutons */
+button.quantity-btn {
+    cursor: pointer;
+    padding: 5px 10px;
+    margin: 0 5px;
+    font-weight: bold;
+    color :blanchedalmond;
+    background-color: rgb(158, 9, 9);
+    border: 1px solid #fafafa;
+    border-radius: 5px;
+    
+}
+button.supprimer{
+    width: 100px;
+    height: 30px;
+    font-weight: bold;
+    color :rgb(240, 240, 240);
+    background-color: rgb(9, 158, 64);
+    border: 1px solid #fafafa;
+    border-radius: 5px;  
+}
+
+.total {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}

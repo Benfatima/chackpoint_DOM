@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Panier d'Achat</title>
+    <link rel="stylesheet" href="pannier.css">
+    
+</head>
+<body>
+
+<div id="panier">
+    <div class="article" id="article1">
+        <span>Article 1</span>
+        <div>
+            <button class="quantity-btn" onclick="changerquantite('article1', -1)">-</button>
+            <span id="quantity1">1</span>
+            <button class="quantity-btn" onclick="changerquantite('article1', 1)">+</button>
+        </div>
+        <i class="heart" onclick="toggleHeart('article1')">&#10084;</i>
+        <button class="supprimer" onclick="removeItem('article1')">Supprimer</button>
+        <span>Prix: $<span id="price1">10</span></span>
+    </div>
+
+    <div class="article" id="article2">
+        <span>Article 2</span>
+        <div>
+            <button class="quantity-btn" onclick="changerquantite('article2', -1)">-</button>
+            <span id="quantity2">1</span>
+            <button class="quantity-btn" onclick="changerquantite('article2', 1)">+</button>
+        </div>
+        <i class="heart" onclick="toggleHeart('article2')">&#10084;</i>
+        <button class="supprimer" onclick="removeItem('article2')">Supprimer</button>
+        <span>Prix: $<span id="price2">20</span></span>
+    </div>
+
+    <div class="total" id="total">Total: $30</div>
+</div>
+
+<script>
+   
+    function changerquantite(itemId, change) {
+        const quantityElement = document.getElementById("quantity" + itemId[itemId.length - 1]);
+        let quantity = parseInt(quantityElement.textContent) + change;
+        if (quantity < 0) quantity = 0;
+        quantityElement.textContent = quantity;
+        updateTotal();
+    }
+
+   
+    function removeItem(itemId) {
+        const articleElement = document.getElementById(itemId);
+        articleElement.remove();
+        updateTotal();
+    }
+
+    
+    function toggleHeart(itemId) {
+        const heartElement = document.getElementById(itemId).getElementsByClassName('heart')[0];//[0] est necessaire cat getElementByClassName retourne une collection meme si celle si contient qu'un seul element
+        heartElement.classList.toggle('active');//toggle permet d'ajouter la valeur de classe active a heart si la classe n'existe pas sinon elle la supprime 
+    }
+
+    
+    function updateTotal() {
+        const prices = document.querySelectorAll('.article span[id^="price"]');//cible tous les elements span enfants de la classe article et ayant un id commencant par "price"
+        const quantities = document.querySelectorAll('.article span[id^="quantity"]');//cible tous les elements span enfants de la classe article et ayant un id commencant par "quantity"
+        let total = 0;
+        prices.forEach((price, index) => {
+            total += parseInt(price.textContent) * parseInt(quantities[index].textContent);
+        });
+        document.getElementById('total').textContent = `Total: $${total}`;
+    }
+</script>
+
+</body>
+</html>
